@@ -1,7 +1,6 @@
 runtime:
   distribution_strategy: 'mirrored'
   loss_scale: 'dynamic'
-  workers: 4
 task:
   model:
     num_classes: 90
@@ -11,7 +10,7 @@ task:
       type: hourglass
       hourglass:
         model_id: 52
-        num_hourglasses: 2
+        num_hourglasses: 1
     head:
       heatmap_bias: -2.19
       input_levels: ['2_0', '2']
@@ -36,11 +35,11 @@ task:
   per_category_metrics: false
   weight_decay: 0.0005
   gradient_clip_norm: 10.0
-  annotation_file: 'coco/annotations/instances_val2017.json'
+  #annotation_file: 'coco/annotations/instances_val2017.json'
   #init_checkpoint: gs://tf_model_garden/vision/centernet/extremenet_hg104_512x512_coco17
   #init_checkpoint_modules: 'backbone'
   train_data:
-    input_path: 'coco/2017/train*'
+    input_path: 'coco/2017/val*'
     drop_remainder: true
     #dtype: 'float16'
     global_batch_size: 16

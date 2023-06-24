@@ -13,6 +13,7 @@
 # limitations under the License.
 
 """TensorFlow Model Garden Vision Centernet trainer."""
+import tensorflow
 from absl import app
 from absl import flags
 import gin
@@ -65,4 +66,6 @@ def main(_):
 
 if __name__ == '__main__':
   tfm_flags.define_flags()
+  tensorflow.config.threading.set_inter_op_parallelism_threads(1)
+  tensorflow.config.threading.set_intra_op_parallelism_threads(1)
   app.run(main)
